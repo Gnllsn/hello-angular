@@ -1,2 +1,25 @@
+<div>
+  <mat-toolbar>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span><a [routerLink]="['/']">Pokédex</a></span>
+    <span class="example-spacer"></span>
+      <div><a [routerLink]="['/generate-code']">Generate Code</a></div>
+  <a href="https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/">
+    <button mat-icon-button>
+      <mat-icon matBadge="4" matBadgeSize="small" matBadgeOverlap="true" matBadgeColor="warn">favorite</mat-icon>
+    </button>
+  </a>
+  <a href="https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/">
+    <button mat-icon-button>
+      <mat-icon matBadge="4" matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn">explore</mat-icon>
+    </button>
+  </a>
 
-    <router-outlet></router-outlet>
+  </mat-toolbar>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+
