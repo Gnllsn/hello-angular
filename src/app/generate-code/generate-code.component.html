@@ -1,1 +1,72 @@
-<p>generate-code works!</p>
+<div id="car-add">
+  <div id="title"><h1>Add Pokemon</h1></div>
+  <div id="form">
+    <form [formGroup]="formulaire_Control" (ngSubmit)="Control_Valeur()" novalidate>
+      <div>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input (keyup)="check_valeur('name')" formControlName="name" matInput>
+        </mat-form-field>
+        <p style="margin-top: -19px;font-size: 12px;color:red" *ngIf="error.name.bool">
+          <small>{{error.name.texte}}</small></p>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Date</mat-label>
+          <input (keyup)="check_valeur('date')" formControlName="date" matInput>
+        </mat-form-field>
+        <p style="margin-top: -19px;font-size: 12px;color:red" *ngIf="error.date.bool">
+          <small>{{error.date.texte}}</small></p>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select (selectionChange)="check_valeur('type')" formControlName="type">
+            <mat-option value="acier">Acier</mat-option>
+            <mat-option value="combat">Combat</mat-option>
+            <mat-option value="dragon">Dragon</mat-option>
+            <mat-option value="eau">Eau</mat-option>
+            <mat-option value="electrik">Electrik</mat-option>
+            <mat-option value="feu">feu</mat-option>
+            <mat-option value="fée">fée</mat-option>
+            <mat-option value="glace">glace</mat-option>
+            <mat-option value="insecte">insecte</mat-option>
+            <mat-option value="plante">plante</mat-option>
+            <mat-option value="poison">poison</mat-option>
+            <mat-option value="psy">psy</mat-option>
+            <mat-option value="roche">roche</mat-option>
+            <mat-option value="sol">sol</mat-option>
+            <mat-option value="spectre">spectre</mat-option>
+            <mat-option value="ténèbres">ténèbres</mat-option>
+            <mat-option value="vol">vol</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p style="margin-top: -19px;font-size: 12px;color:red" *ngIf="error.type.bool">
+          <small>{{error.type.texte}}</small></p>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div id="list">
+
+  <div id="title-list">
+    <h1>Listes Pokemons</h1>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-body-img" ><img  src="assets/evoli.jpg"></div>
+      <div class="card-body-details">
+          <div>name </div>
+          <div>date </div>
+          <div>type </div>
+      </div>
+    </div>
+  </div>
+</div>

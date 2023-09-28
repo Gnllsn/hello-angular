@@ -12,6 +12,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { GenerateCodeComponent } from './generate-code/generate-code.component';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 const routes: Routes = [
   {
     path: '',
@@ -38,9 +42,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatToolbarModule, MatButtonModule, MatIconModule,
     MatBadgeModule, MatButtonModule, MatIconModule,
+    MatFormFieldModule, MatInputModule, MatSelectModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

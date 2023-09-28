@@ -12,6 +12,9 @@ export class Pokemon extends Base{
   // @ts-ignore
   photo : string ;
 
+  // @ts-ignore
+  date : string ;
+
   getValue(): String {
     return this.name;
   }
