@@ -1,4 +1,5 @@
-<div id="car-add">
+<!--ajouter  pokemon -->
+<div id="car-add" class="shadow">
   <div id="title"><h1>Add Pokemon</h1></div>
   <div id="form">
     <form [formGroup]="formulaire_Control" (ngSubmit)="Control_Valeur()" novalidate>
@@ -13,8 +14,10 @@
 
       <div>
         <mat-form-field>
-          <mat-label>Date</mat-label>
-          <input (keyup)="check_valeur('date')" formControlName="date" matInput>
+          <mat-label>Choose a date</mat-label>
+          <input (keyup)="check_valeur('date')"  formControlName="date" matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <p style="margin-top: -19px;font-size: 12px;color:red" *ngIf="error.date.bool">
           <small>{{error.date.texte}}</small></p>
@@ -30,7 +33,7 @@
             <mat-option value="eau">Eau</mat-option>
             <mat-option value="electrik">Electrik</mat-option>
             <mat-option value="feu">feu</mat-option>
-            <mat-option value="fée">fée</mat-option>
+            <mat-option value="fee">fée</mat-option>
             <mat-option value="glace">glace</mat-option>
             <mat-option value="insecte">insecte</mat-option>
             <mat-option value="plante">plante</mat-option>
@@ -39,7 +42,7 @@
             <mat-option value="roche">roche</mat-option>
             <mat-option value="sol">sol</mat-option>
             <mat-option value="spectre">spectre</mat-option>
-            <mat-option value="ténèbres">ténèbres</mat-option>
+            <mat-option value="tenebres">ténèbres</mat-option>
             <mat-option value="vol">vol</mat-option>
           </mat-select>
         </mat-form-field>
@@ -54,18 +57,26 @@
 </div>
 
 
+<!--listes de pokemon -->
 <div id="list">
-
   <div id="title-list">
     <h1>Listes Pokemons</h1>
   </div>
-  <div class="card">
-    <div class="card-body">
-      <div class="card-body-img" ><img  src="assets/evoli.jpg"></div>
-      <div class="card-body-details">
-          <div>name </div>
-          <div>date </div>
-          <div>type </div>
+  <div class="list-body">
+    <div class="card shadow" *ngFor="let pokemon of pokemons">
+      <div class="card-body">
+        <div class="card-body-img"><img src="assets/evoli.jpg"></div>
+        <div class="card-body-details">
+          <div>
+            <div style="font-size: 18px">{{pokemon.name}}</div>
+            <div>{{pokemon.date}}</div>
+            <div ngClass="{{pokemon.type}}" style="border-radius: 0.25rem;width: fit-content;padding: 5px">{{pokemon.type}}</div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" style="font-size: 13px">Modifier</button>
+            <button type="button" class="btn btn-danger" style="margin-left: 10px;font-size: 13px" >Supprimer</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

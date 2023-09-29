@@ -3,6 +3,7 @@ import {Pokemon} from "../interface/model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormControl, Validators, FormGroup} from "@angular/forms";
 import {UtilsService} from "../service/utils.service";
+import {formatDate} from '@angular/common'
 
 @Component({
   selector: 'app-generate-code',
@@ -10,7 +11,9 @@ import {UtilsService} from "../service/utils.service";
   styleUrls: ['./generate-code.component.css']
 })
 export class GenerateCodeComponent {
-  pokemon: Pokemon = new Pokemon();
+
+  pokemons: Pokemon[] = [];
+
   error: any = {};
   formulaire_Control: any;
 
@@ -45,23 +48,43 @@ export class GenerateCodeComponent {
   }
 
   Control_Valeur() {
-    this.check_valeur("name")
-    this.check_valeur("type")
-    this.check_valeur("date")
+    let error = this.check_valeur("name")
+    console.log(error)
+    error = this.check_valeur("type")
+    console.log(error)
+    error = this.check_valeur("date")
+    console.log(error)
+    if(!error){
+      this.capture() ;
+      this.utils.resetAllErrors(this.formulaire_Control)
+    }
+
   }
 
   check_valeur(controlName: string) {
-    const controlRequired = this.utils.checkControl(this.formulaire_Control, controlName, this.error, "required", this.upperCaseFirst(controlName)+" is required");
+    console.log(this.getValue(controlName))
+    let controlRequired = this.utils.checkControl(this.formulaire_Control, controlName, this.error, "required", this.utils.upperCaseFirst(controlName)+" is required");
+    console.log(controlRequired)
     if (!controlRequired) {
-      this.utils.checkControl(this.formulaire_Control, controlName, this.error, "pattern", "Invalid Character");
+      controlRequired = this.utils.checkControl(this.formulaire_Control, controlName, this.error, "pattern", "Invalid Character");
     }
+    console.log(controlRequired)
+    return controlRequired ;
 
-    let variable = this.formulaire_Control.controls;
-    console.log(variable)
   }
 
-  upperCaseFirst(text:string){
-    return text.at(0)?.toUpperCase()+text.substring(1);
+
+  getValue(controlName:string){
+    return this.formulaire_Control.get(controlName).value;
+  }
+
+  capture(){
+    let pokemon = new Pokemon();
+    pokemon.setName(this.getValue("name"))
+    pokemon.setType(this.getValue("type"))
+    pokemon.setDate(formatDate(this.getValue("date"),'yyyy-MM-dd','en-US'))
+    this.pokemons.push(pokemon) ;
+    console.log(this.pokemons)
   }
 
 
